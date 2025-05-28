@@ -1,0 +1,215 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #0056b3;
+    padding-bottom: 20px;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #0056b3;
+}
+
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.5em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #777;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+input[type="file"], input[type="search"], input[type="text"], input[type="date"], select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+}
+
+.upload-section {
+    background-color: #eef7ff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+.toolbar #search-input {
+    flex-grow: 1;
+}
+
+#document-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#document-list li {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+#document-list li:hover {
+    background-color: #f1f1f1;
+}
+
+#document-list a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: #fff;
+    padding: 6px 12px;
+}
+.delete-btn:hover { background: #b52a37; }
+
+#message {
+    text-align: center;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: none;
+    font-weight: bold;
+}
+.success { background-color: #d4edda; color: #155724; }
+.error { background-color: #f8d7da; color: #721c24; }
+
+/* Dashboard */
+.dashboard-section {
+    background-color: #fff9e6;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #ffc107;
+}
+#dashboard-metrics ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+#dashboard-metrics li {
+    background: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+}
+.details-actions .form-group {
+    margin-bottom: 15px;
+}
+.details-actions label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+#history-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+    background: #fdfdfd;
+}
+#history-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.tag {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

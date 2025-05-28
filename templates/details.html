@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Documento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🌱 Detalhes do Documento</h1>
+</header>
+
+<main id="details-main">
+    <a href="/" class="back-link">&larr; Voltar para a lista</a>
+    <h2 id="doc-filename">Carregando...</h2>
+
+    <div class="details-grid">
+        <div class="details-actions">
+            <h3>Ações do Fluxo</h3>
+            <div class="form-group">
+                <label for="status-select">Alterar Status:</label>
+                <select id="status-select">
+                    <option value="Iniciado">Iniciado</option>
+                    <option value="Em Análise">Em Análise</option>
+                    <option value="Pendente Aprovação">Pendente Aprovação</option>
+                    <option value="Aprovado">Aprovado</option>
+                    <option value="Rejeitado">Rejeitado</option>
+                    <option value="Finalizado">Finalizado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="owner-input">Alterar Responsável:</label>
+                <input type="text" id="owner-input" placeholder="Nome do responsável">
+            </div>
+            <div class="form-group">
+                <label for="tags-input">Editar Tags (separadas por vírgula):</label>
+                <input type="text" id="tags-input" placeholder="ex: importante, financeiro">
+            </div>
+            <div class="form-group">
+                <label for="due-date-input">Definir Prazo:</label>
+                <input type="date" id="due-date-input">
+            </div>
+            <button id="update-meta-btn">Salvar Alterações</button>
+            <hr>
+            <button id="sign-btn">Assinar Documento</button>
+            <div id="message" role="status" aria-live="polite"></div>
+        </div>
+
+        <div class="details-info">
+            <h3>Informações Atuais</h3>
+            <p><strong>Arquivo:</strong> <a id="file-download-link" href="#" target="_blank"></a></p>
+            <p><strong>Status Atual:</strong> <span id="current-status"></span></p>
+            <p><strong>Responsável:</strong> <span id="current-owner"></span></p>
+            <p><strong>Tags:</strong> <span id="current-tags"></span></p>
+            <p><strong>Assinatura Digital:</strong> <span id="current-signature"></span></p>
+            <p><strong>Prazo Final:</strong> <span id="current-due-date"></span></p>
+            <p><strong>Permissões de Acesso:</strong> <span id="current-permissions"></span></p>
+
+            <h3>Histórico de Movimentações</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Better Life. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        const filename = '{{ filename }}';
+        const messageDiv = document.getElementById('message');
+        
+        const docFilenameEl = document.getElementById('doc-filename');
+        const downloadLink = document.getElementById('file-download-link');
+        const statusSelect = document.getElementById('status-select');
+        const ownerInput = document.getElementById('owner-input');
+        const tagsInput = document.getElementById('tags-input');
+        const dueDateInput = document.getElementById('due-date-input');
+        
+        const currentStatusEl = document.getElementById('current-status');
+        const currentOwnerEl = document.getElementById('current-owner');
+        const currentTagsEl = document.getElementById('current-tags');
+        const currentSignatureEl = document.getElementById('current-signature');
+        const currentDueDateEl = document.getElementById('current-due-date');
+        const currentPermissionsEl = document.getElementById('current-permissions');
+        const historyListEl = document.getElementById('history-list');
+
+        async function fetchDetails() {
+            try {
+                const response = await fetch(`/api/documents/${filename}`);
+                if (!response.ok) throw new Error('Documento não encontrado.');
+                
+                const doc = await response.json();
+                
+                docFilenameEl.textContent = filename;
+                downloadLink.href = `/uploads/${filename}`;
+                downloadLink.textContent = filename;
+                
+                currentStatusEl.textContent = doc.status;
+                currentOwnerEl.textContent = doc.owner;
+                currentSignatureEl.textContent = doc.is_signed ? 'Sim' : 'Não';
+                currentDueDateEl.textContent = doc.due_date || 'Não definido';
+                currentPermissionsEl.textContent = doc.permissions.join(', ');
+                currentTagsEl.innerHTML = doc.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ');
+
+                statusSelect.value = doc.status;
+                ownerInput.value = doc.owner;
+                tagsInput.value = doc.tags.join(', ');
+                if (doc.due_date) {
+                    dueDateInput.value = doc.due_date;
+                }
+                
+                historyListEl.innerHTML = doc.history.map(item =>
+                    `<li><strong>${new Date(item.timestamp).toLocaleString('pt-BR')}</strong>: ${item.event}</li>`
+                ).reverse().join('');
+
+            } catch (error) {
+                docFilenameEl.textContent = 'Erro ao carregar documento.';
+                console.error(error);
+            }
+        }
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = type;
+            messageDiv.style.display = 'block';
+            setTimeout(() => { messageDiv.style.display = 'none'; }, 4000);
+        }
+
+        async function updateDocument(payload) {
+             const response = await fetch(`/api/documents/${filename}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                showMessage(result.message, 'success');
+                fetchDetails(); // Recarrega os dados
+            } else {
+                showMessage(`Erro: ${result.error}`, 'error');
+            }
+        }
+
+        document.getElementById('update-meta-btn').addEventListener('click', () => {
+            const updates = {
+                status: statusSelect.value,
+                owner: ownerInput.value,
+                tags: tagsInput.value.split(',').map(tag => tag.trim()).filter(Boolean),
+                due_date: dueDateInput.value || null
+            };
+            updateDocument(updates);
+        });
+
+        document.getElementById('sign-btn').addEventListener('click', () => {
+            if (confirm('Deseja assinar digitalmente este documento? Esta ação será registrada.')) {
+                updateDocument({ is_signed: true });
+            }
+        });
+        fetchDetails();
+    });
+</script>
+
+</body>
+</html>

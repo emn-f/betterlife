@@ -53,7 +53,7 @@
     --cor-btn-destaque-texto: #ffffff;
     --cor-btn-destaque-fundo-hover: var(--cor-botao-update-fundo-hover);
 
-    --cor-login-fundo-pagina: #092109;
+    --cor-login-fundo-pagina: #0a2109;
     --cor-login-box-fundo: #161b22;
     --cor-login-box-titulo: #58a6ff;
     --cor-login-input-borda: #30363d;
@@ -492,6 +492,7 @@ button:hover { background-color: var(--cor-botao-primario-fundo-hover); }
 /* LOGIN PAGE */
 body.login-page {
     background: var(--cor-login-fundo-pagina);
+    margin: 0em;
 }
 .login-center {
     display: flex;

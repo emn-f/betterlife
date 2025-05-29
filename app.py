@@ -31,6 +31,10 @@ def index():
 def document_details(filename):
     return render_template('details.html', filename=filename)
 
+@app.route('/documents')
+def documents():
+    return render_template('documents.html')
+
 @app.route('/api/documents', methods=['GET'])
 def get_documents():
     db = get_db()
@@ -87,7 +91,7 @@ def upload_file():
         }
         save_db(db)
         
-        return jsonify({"message": f"'{filename}' enviado com sucesso!"})
+        return jsonify({"message": f"'{filename}' enviado com sucesso!", "filename": filename}), 201
 
 @app.route('/api/documents/<filename>', methods=['PUT'])
 def update_document(filename):

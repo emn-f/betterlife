@@ -15,32 +15,25 @@
     </header>
 
     <main>
-        <section class="dashboard-section" aria-labelledby="dashboard-titulo">
-            <h2 id="dashboard-titulo">Dashboard de Métricas</h2>
-            <div id="dashboard-metrics">
-                <p>Carregando métricas...</p>
-            </div>
-        </section>
+        <div class="dashboard-upload-container">
+            <section class="dashboard-section" aria-labelledby="dashboard-titulo">
+                <h2 id="dashboard-titulo">Dashboard de Métricas</h2>
+                <div id="dashboard-metrics">
+                    <p>Carregando métricas...</p>
+                </div>
+            </section>
 
-        <section class="upload-section" aria-labelledby="enviar-documento">
-            <h2 id="enviar-documento">Enviar Novo Documento (Lançar Fluxo)</h2>
-            <form id="upload-form">
-                <input type="file" id="file-input" name="file" required>
-                <button type="submit">Enviar Arquivo</button>
-            </form>
-            <div id="message" role="status" aria-live="polite"></div>
-        </section>
+            <section class="upload-section" aria-labelledby="enviar-documento">
+                <h2 id="enviar-documento">Novo Documento</h2>
+                <form id="upload-form">
+                    <input type="file" id="file-input" name="file" required>
+                    <button type="submit">Enviar Arquivo</button>
+                </form>
+                <div id="message" role="status" aria-live="polite"></div>
+            </section>
 
-        <section aria-labelledby="documentos-gerenciados">
-            <h2 id="documentos-gerenciados">Documentos Gerenciados</h2>
-
-            <div class="toolbar">
-                <input type="search" id="search-input" placeholder="Pesquisar por nome, tag, status...">
-                <button id="export-csv-btn">Exportar para CSV</button>
-            </div>
-
-            <ul id="document-list"></ul>
-        </section>
+        </div>
+        <a href="/documents" class="btn btn-destaque" id="btn-docs">Documentos Gerenciados</a>
     </main>
 
     <footer>

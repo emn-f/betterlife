@@ -1,3 +1,139 @@
 {
-    "documents": {}
+    "documents": {
+        "teste1.pdf": {
+            "status": "Aprovado",
+            "owner": "Maria",
+            "tags": [
+                "financeiro",
+                "pdf"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-05-01T10:00:00"
+                },
+                {
+                    "event": "Status alterado para Aprovado",
+                    "timestamp": "2025-05-02T14:30:00"
+                }
+            ],
+            "is_signed": true,
+            "due_date": "2025-06-01",
+            "permissions": [
+                "admin",
+                "editor"
+            ]
+        },
+        "contrato2.docx": {
+            "status": "Em An\u00e1lise",
+            "owner": "Jo\u00e3o",
+            "tags": [
+                "contrato",
+                "docx"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-05-03T09:15:00"
+                },
+                {
+                    "event": "Respons\u00e1vel alterado para Jo\u00e3o",
+                    "timestamp": "2025-05-03T10:00:00"
+                }
+            ],
+            "is_signed": false,
+            "due_date": "2025-06-10",
+            "permissions": [
+                "admin"
+            ]
+        },
+        "relatorio3.csv": {
+            "status": "Pendente",
+            "owner": "Ana",
+            "tags": [
+                "relat\u00f3rio",
+                "csv"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-05-04T08:00:00"
+                }
+            ],
+            "is_signed": false,
+            "due_date": null,
+            "permissions": [
+                "admin",
+                "editor"
+            ]
+        },
+        "imagem4.png": {
+            "status": "Iniciado",
+            "owner": "Carlos",
+            "tags": [
+                "imagem",
+                "png"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-05-05T11:20:00"
+                },
+                {
+                    "event": "Status alterado para Iniciado",
+                    "timestamp": "2025-05-05T11:21:00"
+                }
+            ],
+            "is_signed": false,
+            "due_date": null,
+            "permissions": [
+                "editor"
+            ]
+        },
+        "proposta5.txt": {
+            "status": "Finalizado",
+            "owner": "Beatriz",
+            "tags": [
+                "proposta",
+                "txt"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-05-06T13:45:00"
+                },
+                {
+                    "event": "Status alterado para Finalizado",
+                    "timestamp": "2025-05-07T09:00:00"
+                },
+                {
+                    "event": "Documento assinado digitalmente",
+                    "timestamp": "2025-05-07T09:05:00"
+                }
+            ],
+            "is_signed": true,
+            "due_date": "2025-06-15",
+            "permissions": [
+                "admin",
+                "editor"
+            ]
+        },
+        "Glossario.pdf": {
+            "status": "Iniciado",
+            "owner": "N\u00e3o atribu\u00eddo",
+            "tags": [],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-05-29T10:51:17.941370"
+                }
+            ],
+            "is_signed": false,
+            "due_date": null,
+            "permissions": [
+                "admin",
+                "editor"
+            ]
+        }
+    }
 }

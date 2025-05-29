@@ -89,5 +89,20 @@ document.addEventListener('DOMContentLoaded', async function () {
             updateDocument({ is_signed: true });
         }
     });
+
+    document.getElementById('delete-doc-btn').addEventListener('click', async function() {
+        if (confirm('Tem certeza que deseja remover este documento? Esta ação não pode ser desfeita.')) {
+            const filename = document.getElementById('doc-details').dataset.filename;
+            const response = await fetch(`/api/delete/${encodeURIComponent(filename)}`, { method: 'DELETE' });
+            const result = await response.json();
+            if (response.ok) {
+                alert(result.message);
+                window.location.href = '/';
+            } else {
+                alert(result.error || 'Erro ao remover documento.');
+            }
+        }
+    });
+
     fetchDetails();
 });

@@ -13,10 +13,14 @@
     <header>
         <h1>🌱 Detalhes do Documento</h1>
     </header>
-
+    
     <main id="details-main">
         <a href="/" class="back-link">&larr; Voltar para a lista</a>
-        <h2 id="doc-filename">Carregando...</h2>
+        
+        <div class="doc-header">
+            <h2 id="doc-filename">Carregando...</h2>
+            <button id="delete-doc-btn" class="delete-btn">Remover Documento</button>
+        </div>
 
         <div class="details-grid">
             <div class="details-actions">
@@ -45,23 +49,24 @@
                     <input type="date" id="due-date-input">
                 </div>
                 <button id="update-meta-btn">Salvar Alterações</button>
-                <hr>
                 <button id="sign-btn">Assinar Documento</button>
-                <div id="message" role="status" aria-live="polite"></div>
             </div>
 
-            <div class="details-info">
-                <h3>Informações Atuais</h3>
-                <p><strong>Arquivo:</strong> <a id="file-download-link" href="#" target="_blank"></a></p>
-                <p><strong>Status Atual:</strong> <span id="current-status"></span></p>
-                <p><strong>Responsável:</strong> <span id="current-owner"></span></p>
-                <p><strong>Tags:</strong> <span id="current-tags"></span></p>
-                <p><strong>Assinatura Digital:</strong> <span id="current-signature"></span></p>
-                <p><strong>Prazo Final:</strong> <span id="current-due-date"></span></p>
-                <p><strong>Permissões de Acesso:</strong> <span id="current-permissions"></span></p>
-
-                <h3>Histórico de Movimentações</h3>
-                <ul id="history-list"></ul>
+            <div class="details-info-grid">
+                <div class="info-col">
+                    <h3>Informações Atuais</h3>
+                    <p><strong>Arquivo:</strong> <a id="file-download-link" href="#" target="_blank"></a></p>
+                    <p><strong>Status Atual:</strong> <span id="current-status"></span></p>
+                    <p><strong>Responsável:</strong> <span id="current-owner"></span></p>
+                    <p><strong>Tags:</strong> <span id="current-tags"></span></p>
+                    <p><strong>Assinatura Digital:</strong> <span id="current-signature"></span></p>
+                    <p><strong>Prazo Final:</strong> <span id="current-due-date"></span></p>
+                    <p><strong>Permissões de Acesso:</strong> <span id="current-permissions"></span></p>
+                </div>
+                <div class="history-col">
+                    <h3>Histórico de Movimentações</h3>
+                    <ul id="history-list"></ul>
+                </div>
             </div>
         </div>
 

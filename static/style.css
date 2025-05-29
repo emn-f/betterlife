@@ -3,8 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f7f6;
     color: #333;
-    margin: 0;
-    padding: 20px;
+    margin: 1em;
     line-height: 1.6;
 }
 
@@ -21,17 +20,21 @@ h2 {
 /******************* LAYOUT ******************/
 header {
     text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 3px solid #0056b3;
-    padding-bottom: 20px;
 }
 main {
-    max-width: 900px;
-    margin: auto;
+    max-width: 1200px;
+    margin:2em auto;
     background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    align-items: center;
+}
+@media (max-width: 1280px) {
+    main {
+        margin: 8px auto;
+        max-width: calc(100vw - 16px);
+    }
 }
 section { margin-bottom: 30px; }
 footer {
@@ -70,9 +73,34 @@ button:hover { background-color: #218838; }
 .delete-btn {
     background: #dc3545;
     color: #fff;
-    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em 0;
+    font-size: 1.08em;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 35%;
+    font-weight: bold;
 }
-.delete-btn:hover { background: #b52a37; }
+.delete-btn:hover {
+    background: #b52a37;
+}
+
+.update-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em 0;
+    font-size: 1.08em;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 65%;
+    font-weight: bold;
+}
+.update-btn:hover {
+    background: #0056b3;
+}
 
 /******************* TOOLBAR *****************/
 .toolbar {
@@ -90,24 +118,29 @@ button:hover { background-color: #218838; }
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    max-width: 340px; /* ajuste aqui para o tamanho desejado */
+    width: 100%;
 }
 
 /***************** LISTA DE DOCUMENTOS *******/
 #document-list {
-    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    list-style: none;
     padding: 0;
-    margin-top: 20px;
+    margin: 0;
 }
 #document-list li {
     background: #f8f9fa;
     border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
+    padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.2s;
+    min-height: 120px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 #document-list li:hover { background-color: #f1f1f1; }
 #document-list a {
@@ -199,4 +232,100 @@ button:hover { background-color: #218838; }
         flex-direction: column;
         align-items: stretch;
     }
+}
+
+.doc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.doc-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.doc-header .delete-btn {
+    margin: 0;
+}
+
+.dashboard-upload-container {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.dashboard-section,
+.upload-section {
+    flex: 1 1 0;
+    min-width: 280px;
+}
+
+#btn-docs {
+    height: fit-content;
+    margin-top: 32px;
+    align-self: flex-start;
+    white-space: nowrap;
+}
+
+.details-info-grid {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+}
+
+.info-col, .history-col {
+    flex: 1 1 0;
+    min-width: 220px;
+}
+
+@media (max-width: 900px) {
+    .details-info-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+    #document-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    #document-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.doc-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 10px;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-destaque {
+    display: block;
+    margin: 32px auto 0 auto;
+    background: #007bff;
+    color: #fff !important;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 20px 48px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: background 0.2s, transform 0.2s;
+    letter-spacing: 1px;
+    border: none;
+}
+
+.btn-destaque:hover, .btn-destaque:focus {
+    background: #0056b3;
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    text-decoration: none;
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos Gerenciados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Documentos Gerenciados</h1>
+        <a href="/" class="back-link">&larr; Voltar para o Dashboard</a>
+    </header>
+    <main>
+        <div class="toolbar">
+            <input type="search" id="search-input" placeholder="Pesquisar por nome, tag, status...">
+            <button id="export-csv-btn">Exportar para CSV</button>
+        </div>
+        <ul id="document-list"></ul>
+    </main>
+    <footer>
+        <p>&copy; 2025 Better Life. Todos os direitos reservados.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='documents.js') }}"></script>
+</body>
+
+</html>

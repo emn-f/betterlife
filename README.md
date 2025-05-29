@@ -39,18 +39,4 @@ betterlife/
 └── uploads/
 ```
 
-## Deploy
-
-O deploy pode ser feito pelo [Render](https://render.com/) com integração ao GitHub. Commits na branch principal acionam build e publicação automática.
-
-## Contribuição
-
-1. Faça um fork do projeto.
-2. Crie um branch: `git checkout -b minha-feature`
-3. Faça commit: `git commit -m 'Minha feature'`
-4. Faça push: `git push origin minha-feature`
-5. Abra um Pull Request
-
-## Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais informações.
+**Aviso:** Este projeto foi desenvolvido com o auxílio de Inteligência Artificial.

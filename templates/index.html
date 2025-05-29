@@ -1,166 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Better Life - Gestão de Documentos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<header>
-    <h1>🌱 Better Life</h1>
-</header>
+    <header>
+        <h1>🌱 Better Life</h1>
+    </header>
 
-<main>
-    <section class="dashboard-section" aria-labelledby="dashboard-titulo">
-        <h2 id="dashboard-titulo">Dashboard de Métricas</h2>
-        <div id="dashboard-metrics">
-            <p>Carregando métricas...</p>
-        </div>
-    </section>
+    <main>
+        <section class="dashboard-section" aria-labelledby="dashboard-titulo">
+            <h2 id="dashboard-titulo">Dashboard de Métricas</h2>
+            <div id="dashboard-metrics">
+                <p>Carregando métricas...</p>
+            </div>
+        </section>
 
-    <section class="upload-section" aria-labelledby="enviar-documento">
-        <h2 id="enviar-documento">Enviar Novo Documento (Lançar Fluxo)</h2>
-        <form id="upload-form">
-            <input type="file" id="file-input" name="file" required>
-            <button type="submit">Enviar Arquivo</button>
-        </form>
-        <div id="message" role="status" aria-live="polite"></div>
-    </section>
+        <section class="upload-section" aria-labelledby="enviar-documento">
+            <h2 id="enviar-documento">Enviar Novo Documento (Lançar Fluxo)</h2>
+            <form id="upload-form">
+                <input type="file" id="file-input" name="file" required>
+                <button type="submit">Enviar Arquivo</button>
+            </form>
+            <div id="message" role="status" aria-live="polite"></div>
+        </section>
 
-    <section aria-labelledby="documentos-gerenciados">
-        <h2 id="documentos-gerenciados">Documentos Gerenciados</h2>
-        
-        <div class="toolbar">
-            <input type="search" id="search-input" placeholder="Pesquisar por nome, tag, status...">
-            <button id="export-csv-btn">Exportar para CSV</button>
-        </div>
-        
-        <ul id="document-list"></ul>
-    </section>
-</main>
+        <section aria-labelledby="documentos-gerenciados">
+            <h2 id="documentos-gerenciados">Documentos Gerenciados</h2>
 
-<footer>
-    <p>&copy; 2025 Better Life. Todos os direitos reservados.</p>
-</footer>
+            <div class="toolbar">
+                <input type="search" id="search-input" placeholder="Pesquisar por nome, tag, status...">
+                <button id="export-csv-btn">Exportar para CSV</button>
+            </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const uploadForm = document.getElementById('upload-form');
-        const fileInput = document.getElementById('file-input');
-        const documentList = document.getElementById('document-list');
-        const messageDiv = document.getElementById('message');
-        const searchInput = document.getElementById('search-input');
+            <ul id="document-list"></ul>
+        </section>
+    </main>
 
-        // Funções para buscar e exibir
-        async function fetchDocuments(query = '') {
-            try {
-                const url = query ? `/api/documents?q=${encodeURIComponent(query)}` : '/api/documents';
-                const response = await fetch(url);
-                const docs = await response.json();
-                
-                documentList.innerHTML = '';
-                if (Object.keys(docs).length === 0) {
-                    documentList.innerHTML = '<li>Nenhum documento encontrado.</li>';
-                    return;
-                }
+    <footer>
+        <p>&copy; 2025 Better Life. Todos os direitos reservados.</p>
+    </footer>
 
-                for (const filename in docs) {
-                    const meta = docs[filename];
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <a href="/details/${filename}" title="Ver detalhes de ${filename}">
-                            <strong>${filename}</strong>
-                            <br>
-                            <small>Status: ${meta.status || 'N/A'}</small>
-                        </a>
-                        <button class="delete-btn" data-filename="${filename}">Remover</button>
-                    `;
-                    documentList.appendChild(li);
-                }
-            } catch (error) {
-                console.error('Erro ao buscar documentos:', error);
-                documentList.innerHTML = '<li>Erro ao carregar documentos.</li>';
-            }
-        }
-
-        async function fetchDashboardMetrics() {
-            try {
-                const response = await fetch('/api/dashboard-metrics');
-                const metrics = await response.json();
-                const metricsDiv = document.getElementById('dashboard-metrics');
-                
-                let statusHTML = '<ul>';
-                for (const status in metrics.status_distribution) {
-                    statusHTML += `<li><strong>${status}:</strong> ${metrics.status_distribution[status]}</li>`;
-                }
-                statusHTML += '</ul>';
-
-                metricsDiv.innerHTML = `
-                    <p><strong>Total de Documentos:</strong> ${metrics.total_documents}</p>
-                    <div><strong>Documentos por Status:</strong> ${statusHTML}</div>
-                `;
-            } catch (error) {
-                console.error('Erro ao buscar métricas:', error);
-            }
-        }
-
-        function showMessage(text, type) {
-            messageDiv.textContent = text;
-            messageDiv.className = type;
-            messageDiv.style.display = 'block';
-            setTimeout(() => { messageDiv.style.display = 'none'; }, 4000);
-        }
-
-        // Event Listeners
-        uploadForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-
-            const response = await fetch('/api/upload', { method: 'POST', body: formData });
-            const result = await response.json();
-
-            if (response.ok) {
-                showMessage(result.message, 'success');
-                fetchDocuments();
-                fetchDashboardMetrics();
-                uploadForm.reset();
-            } else {
-                showMessage(`Erro: ${result.error}`, 'error');
-            }
-        });
-
-        documentList.addEventListener('click', async function(e) {
-            if (e.target.classList.contains('delete-btn')) {
-                const filename = e.target.getAttribute('data-filename');
-                if (confirm(`Tem certeza que deseja remover o arquivo "${filename}"?`)) {
-                    const response = await fetch(`/api/delete/${filename}`, { method: 'DELETE' });
-                    const result = await response.json();
-                    if (response.ok) {
-                        showMessage(result.message, 'success');
-                        fetchDocuments();
-                        fetchDashboardMetrics();
-                    } else {
-                        showMessage(result.error, 'error');
-                    }
-                }
-            }
-        });
-        
-        searchInput.addEventListener('input', (e) => {
-            fetchDocuments(e.target.value);
-        });
-
-        document.getElementById('export-csv-btn').addEventListener('click', () => {
-            window.location.href = '/api/report/csv';
-        });
-
-        // Carregamento inicial
-        fetchDocuments();
-        fetchDashboardMetrics();
-    });
-</script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
+
 </html>

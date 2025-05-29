@@ -38,5 +38,3 @@ betterlife/
 │   └── details.html
 └── uploads/
 ```
-
-**Aviso:** Este projeto foi desenvolvido com o auxílio de Inteligência Artificial.

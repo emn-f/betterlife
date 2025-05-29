@@ -25,7 +25,6 @@
 ## Estrutura do Projeto
 Aqui está o trecho da estrutura do projeto corrigido para Markdown puro, usando blocos de código adequados:
 
-```markdown
 ```
 betterlife/
 ├── app.py
@@ -39,7 +38,7 @@ betterlife/
 │   └── details.html
 └── uploads/
 ```
-```
+
 ## Deploy
 
 O deploy pode ser feito pelo [Render](https://render.com/) com integração ao GitHub. Commits na branch principal acionam build e publicação automática.

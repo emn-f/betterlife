@@ -22,9 +22,32 @@
 - Gunicorn
 - Render
 
-## Como rodar localmente
+## Estrutura do Projeto
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/emn-f/betterlife.git
-   cd betterlife
+betterlife/
+├── app.py
+├── requirements.txt
+├── Procfile
+├── static/
+│ ├── style.css
+│ └── details.js
+├── templates/
+│ ├── index.html
+│ └── details.html
+└── uploads/
+
+## Deploy
+
+O deploy pode ser feito pelo [Render](https://render.com/) com integração ao GitHub. Commits na branch principal acionam build e publicação automática.
+
+## Contribuição
+
+1. Faça um fork do projeto.
+2. Crie um branch: `git checkout -b minha-feature`
+3. Faça commit: `git commit -m 'Minha feature'`
+4. Faça push: `git push origin minha-feature`
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais informações.

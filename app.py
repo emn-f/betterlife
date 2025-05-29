@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, request, jsonify, render_template, send_from_directory, Response
+from flask import Flask, request, jsonify, render_template, send_from_directory, Response, redirect, url_for, session
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
@@ -23,7 +23,18 @@ def save_db(data):
         json.dump(data, f, indent=4)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        usuario = request.form['username']
+        senha = request.form['password']
+        if usuario == 'admin' and senha == 'admin':
+            return redirect(url_for('dashboard'))  # Troque 'index' por 'dashboard' se necessário
+        else:
+            return render_template('login.html', erro='Login incorreto.')
+    return render_template('login.html')
+
+@app.route('/dashboard')
 def index():
     return render_template('index.html')
 

@@ -117,23 +117,6 @@
                 "admin",
                 "editor"
             ]
-        },
-        "Glossario.pdf": {
-            "status": "Iniciado",
-            "owner": "N\u00e3o atribu\u00eddo",
-            "tags": [],
-            "history": [
-                {
-                    "event": "Documento criado",
-                    "timestamp": "2025-05-29T10:51:17.941370"
-                }
-            ],
-            "is_signed": false,
-            "due_date": null,
-            "permissions": [
-                "admin",
-                "editor"
-            ]
         }
     }
 }

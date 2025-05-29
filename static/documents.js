@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const result = await response.json();
                 if (response.ok) {
                     alert(result.message);
-                    fetchDocuments();
+                    window.location.href = '/dashboard';
                 } else {
                     alert(result.error || 'Erro ao remover documento.');
                 }

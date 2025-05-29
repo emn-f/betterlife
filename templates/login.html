@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | BetterLife</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-center">
+        <img src="/static/logo-betterlife.png" alt="Logo BetterLife" class="login-logo">
+        <div class="login-box">
+            <form action="/dashboard">
+                <input type="text" name="username" placeholder="Usuário" class="login-input" required>
+                <input type="password" name="password" placeholder="Senha" class="login-input" required>
+                <button type="submit" class="login-btn">Entrar</button>
+            </form>
+            {% if erro %}
+                <div class="erro-login">{{ erro }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

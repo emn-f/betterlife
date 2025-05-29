@@ -28,7 +28,7 @@ def login():
     if request.method == 'POST':
         usuario = request.form['username']
         senha = request.form['password']
-        if usuario == 'admin' and senha == 'admin':
+        if usuario == 'better' and senha == 'life':
             return redirect(url_for('dashboard'))  # Troque 'index' por 'dashboard' se necessário
         else:
             return render_template('login.html', erro='Login incorreto.')

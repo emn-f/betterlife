@@ -29,7 +29,7 @@ def login():
         usuario = request.form['username']
         senha = request.form['password']
         if usuario == 'better' and senha == 'life':
-            return redirect(url_for('dashboard'))  # Troque 'index' por 'dashboard' se necessário
+            return redirect(url_for('dashboard')) 
         else:
             return render_template('login.html', erro='Login incorreto.')
     return render_template('login.html')
@@ -195,6 +195,4 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
-    
-    print("Lembrete (RF15): Em um ambiente de produção, configure backups diários do diretório 'uploads' e do arquivo 'db.json' usando cron jobs ou serviços de nuvem.")
     app.run(debug=True)

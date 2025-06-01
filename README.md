@@ -1,40 +1,8 @@
-# Better Life
+# 🌱 Better Life
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue?logo=python)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/flask-2.0%2B-darkgreen?logo=flask)](https://flask.palletsprojects.com/)
+[![Werkzeug](https://img.shields.io/badge/werkzeug-2.0%2B-lightgrey?logo=pallets)](https://werkzeug.palletsprojects.com/)
 
-🌱 **Better Life** é uma aplicação web para gerenciamento de documentos, permitindo upload, controle de status, histórico de movimentações, assinatura digital e atribuição de responsáveis. O objetivo é facilitar o fluxo de trabalho e a organização documental em equipes e empresas.
+Sistema web para gestão de documentos, permitindo upload, controle de status, histórico de movimentações, assinatura digital e atribuição de responsáveis. O objetivo é facilitar o fluxo de trabalho e a organização documental em equipes e empresas.
 
-## Funcionalidades
-
-- Upload e download de documentos
-- Busca e filtro de documentos
-- Controle de status (Iniciado, Em Análise, Aprovado, etc.)
-- Alteração de responsável
-- Edição de tags e prazos
-- Assinatura digital de documentos
-- Histórico detalhado de operações
-- Controle de permissões de acesso
-
-## Tecnologias Utilizadas
-
-- Python 3
-- Flask
-- HTML5 & CSS3
-- JavaScript
-- Gunicorn
-- Render
-
-## Estrutura do Projeto
-Aqui está o trecho da estrutura do projeto corrigido para Markdown puro, usando blocos de código adequados:
-
-```
-betterlife/
-├── app.py
-├── requirements.txt
-├── Procfile
-├── static/
-│   ├── style.css
-│   └── details.js
-├── templates/
-│   ├── index.html
-│   └── details.html
-└── uploads/
-```
+Projeto desenvolvido no âmbito da UCSal para disciplina de Processos de Software.

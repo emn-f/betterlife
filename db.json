@@ -117,6 +117,45 @@
                 "admin",
                 "editor"
             ]
+        },
+        "App.class": {
+            "status": "Iniciado",
+            "owner": "N\u00e3o atribu\u00eddo",
+            "tags": [
+                "java"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-06-03T20:03:13.855889"
+                },
+                {
+                    "timestamp": "2025-06-03T20:03:29.934077",
+                    "event": "Tags atualizadas para: java"
+                },
+                {
+                    "timestamp": "2025-06-03T20:03:33.472145",
+                    "event": "Tags atualizadas para: java"
+                },
+                {
+                    "timestamp": "2025-06-03T20:03:37.731945",
+                    "event": "Tags atualizadas para: java"
+                },
+                {
+                    "timestamp": "2025-06-03T20:03:37.923936",
+                    "event": "Tags atualizadas para: java"
+                },
+                {
+                    "timestamp": "2025-06-03T20:03:38.152106",
+                    "event": "Tags atualizadas para: java"
+                }
+            ],
+            "is_signed": false,
+            "due_date": null,
+            "permissions": [
+                "admin",
+                "editor"
+            ]
         }
     }
 }

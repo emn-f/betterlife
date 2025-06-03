@@ -1,13 +1,5 @@
-/******************* BOX-SIZING GLOBAL ********************/
-html {
-  box-sizing: border-box;
-}
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-/******************* VARIAVEIS DE TEMA (ESCURO PADRÃO) ********************/
-:root {
+/******************* VARIAVEIS DE TEMA ********************/
+:root { /* TEMA ESCURO (PADRÃO) */
     --cor-fundo-body: #121212;
     --cor-texto-body: #e0e0e0;
     --cor-fundo-main: #1e1e1e;
@@ -75,6 +67,75 @@ html {
     --sombra-caixa-login: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
+body.light-theme {
+    --cor-fundo-body: #f4f7f6;
+    --cor-texto-body: #333;
+    --cor-fundo-main: #fff;
+    --cor-texto-titulos: #0056b3;
+    --cor-borda-h2: #eee;
+    --cor-borda-footer: #ddd;
+    --cor-texto-footer: #777;
+
+    --cor-input-borda: #ccc;
+    --cor-input-fundo: #ffffff;
+    --cor-input-texto: #333;
+    --cor-input-borda-focus: #007bff;
+
+    --cor-botao-primario-fundo: #28a745;
+    --cor-botao-primario-texto: white;
+    --cor-botao-primario-fundo-hover: #218838;
+
+    --cor-botao-delete-fundo: #dc3545;
+    --cor-botao-delete-texto: #fff;
+    --cor-botao-delete-fundo-hover: #b52a37;
+
+    --cor-botao-update-fundo: #007bff;
+    --cor-botao-update-texto: #fff;
+    --cor-botao-update-fundo-hover: #0056b3;
+
+    --cor-upload-section-fundo: #eef7ff;
+    --cor-lista-item-fundo: #f8f9fa;
+    --cor-lista-item-borda: #ddd;
+    --cor-lista-item-fundo-hover: #f1f1f1;
+    --cor-lista-link: #0056b3;
+
+    --cor-sucesso-fundo: #d4edda;
+    --cor-sucesso-texto: #155724;
+    --cor-erro-fundo: #f8d7da;
+    --cor-erro-texto: #721c24;
+
+    --cor-dashboard-fundo: #fff9e6;
+    --cor-dashboard-borda-lateral: #ffc107;
+    --cor-dashboard-lista-item-fundo: #fff;
+    --cor-dashboard-lista-item-borda: #eee;
+
+    --cor-link-voltar: #0056b3;
+    --cor-historico-fundo: #fdfdfd;
+    --cor-historico-borda: #eee;
+    --cor-historico-item-borda: #f0f0f0;
+
+    --cor-tag-fundo: #007bff;
+    --cor-tag-texto: white;
+
+    --cor-btn-destaque-fundo: #007bff;
+    --cor-btn-destaque-texto: #fff; /* !important será aplicado no seletor específico */
+    --cor-btn-destaque-fundo-hover: #0056b3;
+
+    --cor-login-fundo-pagina: #ffffff;
+    --cor-login-box-fundo: #fff;
+    --cor-login-box-titulo: #0056b3;
+    --cor-login-input-borda: #ccc;
+    --cor-login-input-borda-focus: #007bff;
+    --cor-login-botao-fundo: #007bff;
+    --cor-login-botao-texto: #fff;
+    --cor-login-botao-fundo-hover: #0056b3;
+    --cor-login-erro: #dc3545;
+
+    --sombra-caixa-padrao: 0 4px 16px rgba(0,0,0,0.08);
+    --sombra-caixa-login: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+
 /******************* BASE ********************/
 body {
     font-family: Arial, sans-serif;
@@ -85,13 +146,8 @@ body {
 }
 
 /***************** TIPOGRAFIA ****************/
-h1, h2 {
-    color: var(--cor-texto-titulos);
-}
-h1 {
-    font-size: 2.2em;
-    margin-bottom: 10px;
-}
+h1, h2 { color: var(--cor-texto-titulos); }
+h1 { font-size: 2.2em; margin-bottom: 10px; }
 h2 {
     font-size: 1.5em;
     border-bottom: 2px solid var(--cor-borda-h2);
@@ -105,22 +161,20 @@ header {
 }
 main {
     max-width: 1200px;
-    margin: 2em auto;
+    margin:2em auto;
     background: var(--cor-fundo-main);
     padding: 2em;
     border-radius: 12px;
     box-shadow: var(--sombra-caixa-padrao);
-    /* align-items: center; /* Removido pois main não é flex container por padrão */
+    align-items: center;
 }
 @media (max-width: 1280px) {
     main {
-        margin: 8px auto; /* Considerar usar var() para espaçamentos consistentes */
-        max-width: calc(100vw - 16px); /* ou usar padding no body/html */
+        margin: 8px auto;
+        max-width: calc(100vw - 16px);
     }
 }
-section {
-    margin-bottom: 30px;
-}
+section { margin-bottom: 30px; }
 footer {
     text-align: center;
     margin-top: 40px;
@@ -140,7 +194,7 @@ select {
     color: var(--cor-input-texto);
     padding: 10px;
     border-radius: 4px;
-    width: 100%; /* Simplificado devido ao box-sizing: border-box; */
+    width: calc(100% - 22px);
     margin-bottom: 10px;
 }
 input[type="file"]:focus,
@@ -152,8 +206,9 @@ select:focus {
     outline: none;
 }
 
+
 /******************* BOTÕES ******************/
-button { /* Estilo base para botões primários e outros <button> */
+button {
     background-color: var(--cor-botao-primario-fundo);
     color: var(--cor-botao-primario-texto);
     padding: 10px 18px;
@@ -162,40 +217,39 @@ button { /* Estilo base para botões primários e outros <button> */
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.2s;
-    font-weight: normal; /* Adicionado para consistência, já que outros botões especificam bold */
-    text-align: center;
 }
-button:hover {
-    background-color: var(--cor-botao-primario-fundo-hover);
-}
-
-.delete-btn, .update-btn { /* Estilos comuns para botões de ação delete/update */
-    border: none; /* Já herdado se for <button>, mas bom garantir se for <a> etc. */
-    border-radius: 4px; /* Idem */
-    padding: 0.5em 0; /* padding vertical, horizontal é 0 pois width é percentual */
-    font-size: 1.08em;
-    cursor: pointer; /* Idem */
-    transition: background-color 0.2s; /* Transição apenas na cor de fundo */
-    font-weight: bold;
-    /* width é definido abaixo especificamente */
-}
+button:hover { background-color: var(--cor-botao-primario-fundo-hover); }
 
 .delete-btn {
-    background-color: var(--cor-botao-delete-fundo);
+    background: var(--cor-botao-delete-fundo);
     color: var(--cor-botao-delete-texto);
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em 0;
+    font-size: 1.08em;
+    cursor: pointer;
+    transition: background 0.2s;
     width: 35%;
+    font-weight: bold;
 }
 .delete-btn:hover {
-    background-color: var(--cor-botao-delete-fundo-hover);
+    background: var(--cor-botao-delete-fundo-hover);
 }
 
 .update-btn {
-    background-color: var(--cor-botao-update-fundo);
+    background: var(--cor-botao-update-fundo);
     color: var(--cor-botao-update-texto);
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em 0;
+    font-size: 1.08em;
+    cursor: pointer;
+    transition: background 0.2s;
     width: 65%;
+    font-weight: bold;
 }
 .update-btn:hover {
-    background-color: var(--cor-botao-update-fundo-hover);
+    background: var(--cor-botao-update-fundo-hover);
 }
 
 /******************* TOOLBAR *****************/
@@ -206,9 +260,7 @@ button:hover {
     margin-bottom: 20px;
     gap: 15px;
 }
-.toolbar #search-input { /* Assumindo que é um input dentro da toolbar */
-    flex-grow: 1;
-}
+.toolbar #search-input { flex-grow: 1; }
 
 /***************** UPLOAD SECTION ************/
 .upload-section {
@@ -217,7 +269,7 @@ button:hover {
     border-radius: 8px;
     text-align: center;
     max-width: 340px;
-    width: 100%; /* Para responsividade dentro de um container flex */
+    width: 100%;
 }
 
 /***************** LISTA DE DOCUMENTOS *******/
@@ -227,7 +279,7 @@ button:hover {
     gap: 24px;
     list-style: none;
     padding: 0;
-    margin: 0; /* Removido margin-bottom que estava no original, se necessário, adicionar a um wrapper */
+    margin: 0;
 }
 #document-list li {
     background: var(--cor-lista-item-fundo);
@@ -240,14 +292,12 @@ button:hover {
     min-height: 120px;
     box-shadow: var(--sombra-caixa-padrao);
 }
-#document-list li:hover {
-    background-color: var(--cor-lista-item-fundo-hover);
-}
+#document-list li:hover { background-color: var(--cor-lista-item-fundo-hover); }
 #document-list a {
     text-decoration: none;
     color: var(--cor-lista-link);
     font-weight: bold;
-    flex-grow: 1; /* Para o link ocupar o espaço disponível no flex-item li */
+    flex-grow: 1;
 }
 
 /********************* MENSAGENS *************/
@@ -256,19 +306,20 @@ button:hover {
     padding: 12px;
     margin-top: 20px;
     border-radius: 5px;
-    display: none; /* Controlado por JS */
+    display: none;
     font-weight: bold;
 }
 .success {
     background-color: var(--cor-sucesso-fundo);
     color: var(--cor-sucesso-texto);
-    border: 1px solid var(--cor-sucesso-texto);
+    border: 1px solid var(--cor-sucesso-texto); /* Adiciona borda para melhor visibilidade */
 }
 .error {
     background-color: var(--cor-erro-fundo);
     color: var(--cor-erro-texto);
-    border: 1px solid var(--cor-erro-texto);
+    border: 1px solid var(--cor-erro-texto); /* Adiciona borda para melhor visibilidade */
 }
+
 
 /******************* DASHBOARD ***************/
 .dashboard-section {
@@ -286,7 +337,7 @@ button:hover {
 }
 #dashboard-metrics li {
     background: var(--cor-dashboard-lista-item-fundo);
-    padding: 8px; /* Considere usar 'em' ou 'rem' para consistência */
+    padding: 8px;
     border-radius: 4px;
     border: 1px solid var(--cor-dashboard-lista-item-borda);
 }
@@ -304,9 +355,7 @@ button:hover {
     grid-template-columns: 1fr 1.5fr;
     gap: 40px;
 }
-.details-actions .form-group { /* Supondo uma classe .form-group */
-    margin-bottom: 15px;
-}
+.details-actions .form-group { margin-bottom: 15px; }
 .details-actions label {
     display: block;
     margin-bottom: 5px;
@@ -325,9 +374,6 @@ button:hover {
     padding: 8px 0;
     border-bottom: 1px solid var(--cor-historico-item-borda);
 }
-#history-list li:last-child { /* Para remover a borda do último item */
-    border-bottom: none;
-}
 .tag {
     display: inline-block;
     background-color: var(--cor-tag-fundo);
@@ -338,21 +384,31 @@ button:hover {
     margin-right: 5px;
 }
 
-/***************** COMPONENTES ADICIONAIS E LAYOUTS FLEX/GRID *************/
+/***************** RESPONSIVIDADE *************/
+@media (max-width: 768px) {
+    .details-grid { grid-template-columns: 1fr; }
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
 .doc-header {
     display: flex;
-    align-items: flex-start; /* Alinha ao topo se os itens tiverem alturas diferentes */
+    align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 16px;
 }
-.doc-header h2 { /* Evita que o h2 dentro do doc-header pegue margem-top grande */
+
+.doc-header h2 {
     margin: 0;
-    font-size: 1.5em; /* Mantém o tamanho do h2 padrão */
-    border-bottom: none; /* Remove a borda padrão de h2 se não desejada aqui */
-    padding-bottom: 0; /* Remove o padding padrão de h2 se não desejado aqui */
+    font-size: 1.5em;
 }
-/* .doc-header .delete-btn { margin: 0; } /* Removido pois o .delete-btn não tem margem por padrão */
+
+.doc-header .delete-btn {
+    margin: 0;
+}
 
 .dashboard-upload-container {
     display: flex;
@@ -360,82 +416,95 @@ button:hover {
     align-items: flex-start;
     margin-bottom: 30px;
 }
+
 .dashboard-section,
-.upload-section { /* Para que ambos os itens no container flex possam crescer/encolher */
+.upload-section {
     flex: 1 1 0;
-    min-width: 280px; /* Garante uma largura mínima */
+    min-width: 280px;
 }
 
-#btn-docs { /* Assumindo que é um botão ou link */
-    /* height: fit-content;  Normalmente não necessário para botões */
+#btn-docs {
+    height: fit-content;
     margin-top: 32px;
-    align-self: flex-start; /* Se dentro de um container flex */
+    align-self: flex-start;
     white-space: nowrap;
 }
 
-.details-info-grid { /* Mudado de 'display: flex' para 'display: grid' para mais controle se necessário, ou manter flex */
-    display: flex; /* ou grid, dependendo da complexidade do layout interno */
+.details-info-grid {
+    display: flex;
     gap: 32px;
     margin-top: 24px;
 }
+
 .info-col, .history-col {
     flex: 1 1 0;
     min-width: 220px;
 }
 
+@media (max-width: 900px) {
+    .details-info-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+    #document-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    #document-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 .doc-actions {
     display: flex;
-    justify-content: space-between; /* Garante que os botões fiquem nas extremidades */
-    align-items: stretch; /* Para que os botões preencham a altura se tiverem alturas diferentes */
+    justify-content: space-between;
+    align-items: stretch;
     margin-bottom: 10px;
     gap: 8px;
-    width: 100%; /* Para ocupar a largura do pai */
+    width: 100%;
 }
 
 .btn-destaque {
-    display: block; /* Para ocupar a largura e permitir margin auto */
+    display: block;
     margin: 32px auto 0 auto;
     background: var(--cor-btn-destaque-fundo);
-    color: var(--cor-btn-destaque-texto) !important; /* Mantido !important, avaliar necessidade no contexto HTML */
+    color: var(--cor-btn-destaque-texto) !important; /* Mantendo o !important original */
     font-size: 1.3em;
     font-weight: bold;
     padding: 20px 48px;
     border-radius: 8px;
     text-align: center;
-    text-decoration: none; /* Se for um link <a> */
+    text-decoration: none;
     box-shadow: var(--sombra-caixa-padrao);
-    transition: background-color 0.2s, transform 0.2s, color 0.2s;
+    transition: background 0.2s, transform 0.2s, color 0.2s;
     letter-spacing: 1px;
     border: none;
 }
+
 .btn-destaque:hover, .btn-destaque:focus {
     background: var(--cor-btn-destaque-fundo-hover);
-    color: var(--cor-btn-destaque-texto) !important; /* Mantido !important */
+    color: var(--cor-btn-destaque-texto) !important; /* Mantendo o !important original */
     transform: translateY(-2px) scale(1.03);
-    text-decoration: none; /* Se for um link <a> */
+    text-decoration: none;
 }
 
-/***************** LOGIN PAGE *****************/
+/* LOGIN PAGE */
 body.login-page {
     background: var(--cor-login-fundo-pagina);
-    margin: 0; /* Reset da margem do body específico para a pág de login */
-    display: flex; /* Adicionado para centralizar .login-center */
-    flex-direction: column; /* Adicionado */
-    align-items: center; /* Adicionado */
-    justify-content: center; /* Adicionado */
-    min-height: 100vh; /* Garante altura total */
+    margin: 0em;
 }
-.login-center { /* Este container pode não ser mais necessário se body.login-page for flex */
+.login-center {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centraliza verticalmente o conteúdo dentro dele */
     width: 100%;
-    /* min-height: 100vh; /* Movido para body.login-page */
+    min-height: 100vh; /* Garante que o conteúdo centralize verticalmente */
+    justify-content: center; /* Centraliza verticalmente */
 }
 .login-logo {
-    width: 20em; /* ou um valor em px mais previsível */
-    margin-bottom: 1.5em; /* Adicionado espaço abaixo do logo */
+    width: 20em;
+    margin: 0em; /* Adicionado espaço abaixo do logo */
 }
 .login-box {
     background: var(--cor-login-box-fundo);
@@ -445,18 +514,20 @@ body.login-page {
     text-align: center;
     min-width: 320px;
     max-width: 350px;
-    width: 100%; /* Para responsividade */
-    /* margin: 0; /* Se .login-center já centraliza, a margem aqui pode ser 0 */
-    /* align-items: center; /* Removido, login-box não é flex container */
+    width: 100%;
+    margin: 0;
+    align-items: center;
 }
-/* .login-box img { } /* Seletor não utilizado, removido. O .login-logo já trata disso. */
-
+.login-box img { /* Este seletor parece não estar sendo usado, pois o logo está fora da .login-box */
+    width: 80px;
+    margin-bottom: 16px;
+}
 .login-box h1 {
     font-size: 1.4em;
     margin-bottom: 18px;
     color: var(--cor-login-box-titulo);
 }
-.login-input { /* Já utiliza box-sizing: border-box via regra global */
+.login-input {
     width: 100%;
     padding: 8px 10px;
     margin-bottom: 1em;
@@ -465,17 +536,16 @@ body.login-page {
     color: var(--cor-input-texto); /* Reutilizando variável de input genérica */
     border-radius: 4px;
     font-size: 1em;
-    /* box-sizing: border-box; /* Herdado da regra global */
-    transition: border-color 0.2s; /* Transição na cor da borda */
+    box-sizing: border-box;
+    transition: border 0.2s;
 }
 .login-input:focus {
-    border-color: var(--cor-login-input-borda-focus); /* Apenas muda a cor da borda */
-    /* border-width: 1.5px; /* Aumentar a largura da borda no focus pode causar 'pulo' no layout */
+    border: 1.5px solid var(--cor-login-input-borda-focus);
     outline: none;
 }
 .login-btn {
     width: 100%;
-    padding: 10px 0; /* padding vertical, horizontal 0 pois width é 100% */
+    padding: 10px 0;
     background: var(--cor-login-botao-fundo);
     color: var(--cor-login-botao-texto);
     border: none;
@@ -483,56 +553,14 @@ body.login-page {
     font-size: 1.08em;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background 0.2s;
     margin-top: 6px;
 }
 .login-btn:hover {
-    background-color: var(--cor-login-botao-fundo-hover);
+    background: var(--cor-login-botao-fundo-hover);
 }
 .erro-login {
     color: var(--cor-login-erro);
     margin-top: 10px;
     font-weight: bold;
-    display: block; /* Para garantir que o margin-top funcione como esperado */
-}
-
-
-/***************** RESPONSIVIDADE GERAL *************/
-@media (max-width: 900px) {
-    #document-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas */
-    }
-    .details-info-grid {
-        flex-direction: column;
-        gap: 16px;
-    }
-}
-
-@media (max-width: 768px) {
-    .details-grid {
-        grid-template-columns: 1fr; /* Uma coluna */
-    }
-    .toolbar {
-        flex-direction: column;
-        align-items: stretch; /* Para os itens esticarem na largura total */
-    }
-    .dashboard-upload-container { /* Stack vertical em telas menores */
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 600px) {
-    body {
-        margin: 0.5em; /* Menor margem em telas pequenas */
-    }
-    main {
-        padding: 1em; /* Menor padding interno */
-    }
-    #document-list {
-        grid-template-columns: 1fr; /* Uma coluna */
-    }
-    h1 { font-size: 1.8em; }
-    h2 { font-size: 1.3em; }
-    .login-logo { width: 15em; }
-    .login-box { padding: 1.5em; }
 }

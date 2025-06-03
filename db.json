@@ -24,52 +24,6 @@
                 "editor"
             ]
         },
-        "contrato2.docx": {
-            "status": "Pendente Aprova\u00e7\u00e3o",
-            "owner": "Marcos",
-            "tags": [
-                "bla"
-            ],
-            "history": [
-                {
-                    "event": "Documento criado",
-                    "timestamp": "2025-05-03T09:15:00"
-                },
-                {
-                    "event": "Respons\u00e1vel alterado para Jo\u00e3o",
-                    "timestamp": "2025-05-03T10:00:00"
-                },
-                {
-                    "timestamp": "2025-06-03T20:38:22.586035",
-                    "event": "Tags atualizadas para: teste"
-                },
-                {
-                    "timestamp": "2025-06-03T20:42:37.146691",
-                    "event": "Tags atualizadas para: bla"
-                },
-                {
-                    "timestamp": "2025-06-03T20:42:37.146691",
-                    "event": "Respons\u00e1vel alterado para: Marcos"
-                },
-                {
-                    "timestamp": "2025-06-03T20:44:27.163314",
-                    "event": "Status alterado de 'Em An\u00e1lise' para 'Pendente Aprova\u00e7\u00e3o'"
-                },
-                {
-                    "timestamp": "2025-06-03T20:44:27.163314",
-                    "event": "Prazo definido para: 2025-06-24"
-                },
-                {
-                    "timestamp": "2025-06-03T20:44:46.133393",
-                    "event": "Documento assinado digitalmente"
-                }
-            ],
-            "is_signed": true,
-            "due_date": "2025-06-24",
-            "permissions": [
-                "admin"
-            ]
-        },
         "relatorio3.csv": {
             "status": "Pendente",
             "owner": "Ana",
@@ -171,9 +125,13 @@
                 {
                     "timestamp": "2025-06-03T20:03:38.152106",
                     "event": "Tags atualizadas para: java"
+                },
+                {
+                    "timestamp": "2025-06-03T20:47:10.416102",
+                    "event": "Documento assinado digitalmente"
                 }
             ],
-            "is_signed": false,
+            "is_signed": true,
             "due_date": null,
             "permissions": [
                 "admin",

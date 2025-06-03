@@ -114,30 +114,53 @@ def update_document(filename):
     doc = db['documents'][filename]
     
     timestamp = datetime.now().isoformat()
-    history_entry = {"timestamp": timestamp}
-
+    updated = False
     if 'status' in update_data and update_data['status'] != doc.get('status'):
-        history_entry['event'] = f"Status alterado de '{doc.get('status')}' para '{update_data['status']}'"
+        history_entry = {
+            "timestamp": timestamp,
+            "event": f"Status alterado de '{doc.get('status')}' para '{update_data['status']}'"
+        }
         doc['status'] = update_data['status']
-    elif 'tags' in update_data:
-         history_entry['event'] = f"Tags atualizadas para: {', '.join(update_data['tags'])}"
-         doc['tags'] = update_data['tags']
-    elif 'owner' in update_data:
-        history_entry['event'] = f"Responsável alterado para: {update_data['owner']}"
+        doc['history'].append(history_entry)
+        updated = True
+    if 'tags' in update_data and update_data['tags'] != doc.get('tags'):
+        history_entry = {
+            "timestamp": timestamp,
+            "event": f"Tags atualizadas para: {', '.join(update_data['tags'])}"
+        }
+        doc['tags'] = update_data['tags']
+        doc['history'].append(history_entry)
+        updated = True
+    if 'owner' in update_data and update_data['owner'] != doc.get('owner'):
+        history_entry = {
+            "timestamp": timestamp,
+            "event": f"Responsável alterado para: {update_data['owner']}"
+        }
         doc['owner'] = update_data['owner']
-    elif 'is_signed' in update_data:
-        history_entry['event'] = "Documento assinado digitalmente"
+        doc['history'].append(history_entry)
+        updated = True
+    if 'is_signed' in update_data and update_data['is_signed'] != doc.get('is_signed'):
+        history_entry = {
+            "timestamp": timestamp,
+            "event": "Documento assinado digitalmente"
+        }
         doc['is_signed'] = update_data['is_signed']
-    elif 'due_date' in update_data:
-        history_entry['event'] = f"Prazo definido para: {update_data['due_date']}"
+        doc['history'].append(history_entry)
+        updated = True
+    if 'due_date' in update_data and update_data['due_date'] != doc.get('due_date'):
+        history_entry = {
+            "timestamp": timestamp,
+            "event": f"Prazo definido para: {update_data['due_date']}"
+        }
         doc['due_date'] = update_data['due_date']
+        doc['history'].append(history_entry)
+        updated = True
+
+    if updated:
+        save_db(db)
+        return jsonify({"message": "Documento atualizado com sucesso!", "document": doc})
     else:
         return jsonify({"message": "Nenhuma alteração detectada."})
-    
-    doc['history'].append(history_entry)
-    save_db(db)
-    
-    return jsonify({"message": "Documento atualizado com sucesso!", "document": doc})
 
 
 @app.route('/api/delete/<filename>', methods=['DELETE'])

@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const result = await response.json();
         if (response.ok) {
             showMessage(result.message, 'success');
-            fetchDetails(); // Recarrega os dados
+            fetchDetails();
         } else {
             showMessage(`Erro: ${result.error}`, 'error');
         }
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             const result = await response.json();
             if (response.ok) {
                 alert(result.message);
-                window.location.href = '/';
+                window.location.href = '/dashboard';
             } else {
                 alert(result.error || 'Erro ao remover documento.');
             }

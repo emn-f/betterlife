@@ -137,6 +137,37 @@
                 "admin",
                 "editor"
             ]
+        },
+        "floresta.png": {
+            "status": "Iniciado",
+            "owner": "Kaua",
+            "tags": [
+                "nice"
+            ],
+            "history": [
+                {
+                    "event": "Documento criado",
+                    "timestamp": "2025-06-03T20:53:46.374194"
+                },
+                {
+                    "timestamp": "2025-06-03T20:53:55.428016",
+                    "event": "Tags atualizadas para: nice"
+                },
+                {
+                    "timestamp": "2025-06-03T20:53:55.428016",
+                    "event": "Respons\u00e1vel alterado para: Kaua"
+                },
+                {
+                    "timestamp": "2025-06-03T20:53:55.428016",
+                    "event": "Prazo definido para: 2025-06-27"
+                }
+            ],
+            "is_signed": false,
+            "due_date": "2025-06-27",
+            "permissions": [
+                "admin",
+                "editor"
+            ]
         }
     }
 }

@@ -33,7 +33,11 @@
             </section>
 
         </div>
-        <a href="/documents" class="btn btn-destaque" id="btn-docs">Documentos Gerenciados</a>
+
+        <div class="main-actions-container">
+            <a href="{{ url_for('documents') }}" class="btn btn-destaque" id="btn-docs">Documentos Gerenciados</a>
+            <a href="{{ url_for('system_logs') }}" class="btn btn-destaque" id="btn-logs">Logs do Sistema</a>
+        </div>
     </main>
 
     <footer>

@@ -217,5 +217,9 @@ def export_report_csv():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/logs')
+def system_logs():
+    return render_template('log.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs do Sistema - Better Life</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>📜 Logs do Sistema</h1>
+    </header>
+
+    <main>
+        <div class="logs-toolbar">
+            <a href="{{ url_for('index') }}" class="btn-voltar">&larr; Voltar para o Dashboard</a>
+            <input type="search" id="search-logs-input" placeholder="Pesquisar nos logs...">
+        </div>
+
+        <div class="logs-container">
+            <h2>Registros de Atividades</h2>
+            <ul id="logs-list">
+                <li>Nenhum log para exibir ou carregando...</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Better Life. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='logs.js') }}"></script>
+</body>
+</html>
